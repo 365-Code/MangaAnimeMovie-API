@@ -1,5 +1,4 @@
 import { META } from "@consumet/extensions";
-import { ApiError } from "next/dist/server/api-utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -36,7 +35,7 @@ export async function GET(req: NextRequest) {
         ? searchParams.get("season") || undefined
         : undefined;
     
-    const {currentPage, hasNextPage, totalPages, data} = await anilist.advancedSearch(
+    const {currentPage, hasNextPage, totalPages, results} = await anilist.advancedSearch(
       query,
       "ANIME",
       page,
@@ -50,7 +49,7 @@ export async function GET(req: NextRequest) {
       season,
     );
 
-    return NextResponse.json({ data, currentPage, hasNextPage, totalPages }, { status: 200 });
+    return NextResponse.json({ data: results, currentPage, hasNextPage, totalPages }, { status: 200 });
   } catch (error: any) {
 
     return NextResponse.json(

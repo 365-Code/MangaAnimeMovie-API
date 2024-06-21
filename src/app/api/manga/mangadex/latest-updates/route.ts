@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const manga = new MANGA.MangaDex()
-    const {data} = await manga.fetchLatestUpdates()
+    const {results} = await manga.fetchLatestUpdates()
     return NextResponse.json({
-      data
+      data: results
     })
   } catch (error: any) {
       return NextResponse.json(

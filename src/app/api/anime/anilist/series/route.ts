@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const page = searchParams.get("page") || 1;
     const perPage = searchParams.get("perPage") || 20;
-    const { data, currentPage, hasNextPage, totalPages } =
+    const { results, currentPage, hasNextPage, totalPages } =
       await anilist.advancedSearch(
         undefined,
         "ANIME",
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
         ["TRENDING_DESC"],
       );
     return NextResponse.json(
-      { hasNextPage, currentPage, totalPages, data },
+      { hasNextPage, currentPage, totalPages, data: results },
       { status: 200 },
     );
   } catch (error: any) {

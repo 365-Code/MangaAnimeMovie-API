@@ -8,9 +8,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const page = searchParams.get("page") || 1;
     const perPage = searchParams.get("perPage") || 20;
-    const { data, currentPage, hasNextPage, totalPages, totaldata } =
+    const { results, currentPage, hasNextPage, totalPages, totalResults } =
       await anilist.fetchTrendingAnime(Number(page), Number(perPage));
-    return NextResponse.json({ currentPage, hasNextPage, data }, { status: 200 });
+    return NextResponse.json({ currentPage, hasNextPage, data: results }, { status: 200 });
   } catch (error: any) {
       return NextResponse.json(
         { error: error.message },
