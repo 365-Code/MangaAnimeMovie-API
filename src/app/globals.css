@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --header-size: 60px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +38,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+body{
+  @apply flex flex-col;
+}
+
+.container{
+  @apply mx-auto;
+}
+
+.cover-img{
+  @apply w-full h-full object-cover object-center;
 }
