@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const anilist = new META.Anilist();
+    const movie = new META.TMDB();
     const {searchParams} = new URL(req.url)
     const query = searchParams.get('query') || "";
-    const results = await anilist.advancedSearch(query, "MANGA");
+    const results = await movie.fetchTrending("movie")
 
     return NextResponse.json({ data: results }, { status: 200 });
   } catch (error: any) {
