@@ -34,27 +34,27 @@ export async function GET(req: NextRequest) {
       searchParams.get("season") != "All"
         ? searchParams.get("season") || undefined
         : undefined;
-    
-    const {currentPage, hasNextPage, totalPages, results} = await anilist.advancedSearch(
-      query,
-      "ANIME",
-      page,
-      perPage,
-      format,
-      sort,
-      genres,
-      undefined,
-      undefined,
-      status,
-      season,
-    );
 
-    return NextResponse.json({ data: results, currentPage, hasNextPage, totalPages }, { status: 200 });
-  } catch (error: any) {
+    const { currentPage, hasNextPage, totalPages, results } =
+      await anilist.advancedSearch(
+        query,
+        "ANIME",
+        page,
+        perPage,
+        format,
+        sort,
+        genres,
+        undefined,
+        undefined,
+        status,
+        season
+      );
 
     return NextResponse.json(
-      { error: error.message },
-      { status: 500 },
+      { data: results, currentPage, hasNextPage, totalPages },
+      { status: 200 }
     );
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
