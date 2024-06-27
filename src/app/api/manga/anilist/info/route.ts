@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const anilist = new META.Anilist.Manga();
+    const anilist = new META.Anilist();
     const {searchParams} = new URL(req.url)
     const id = searchParams.get('id') || "";
-    const results = await anilist.fetchMangaInfo(id)
+    const results = await anilist.fetchAnilistInfoById(id)
     return NextResponse.json({ data: results }, { status: 200 });
   } catch (error: any) {
       return NextResponse.json(
