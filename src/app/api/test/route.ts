@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const id = searchParams.get('id') || "";
     console.log(id);
     
-    const results = await anilist.fetchChapterPages(id)
+    const results = await anilist.fetchChapterPages(id, )
     return NextResponse.json({ data: results }, { status: 200 });
   } catch (error: any) {
       return NextResponse.json(
