@@ -1,5 +1,3 @@
-import Slide from '@/components/Slide'
-import Slider from '@/components/Slider'
 import React from 'react'
 
 const Page = () => {
