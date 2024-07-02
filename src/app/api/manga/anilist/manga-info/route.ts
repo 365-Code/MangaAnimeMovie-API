@@ -7,10 +7,7 @@ export async function GET(req: NextRequest) {
     const {searchParams} = new URL(req.url)
     const id = searchParams.get('id') || "";
     const results = await anilist.fetchMangaInfo(id)
-    console.log("RESULTS", results);
-    
-    const data = JSON.parse(JSON.stringify(results))
-    return NextResponse.json({ data }, { status: 200 });
+    return NextResponse.json({ data: results }, { status: 200 });
   } catch (error: any) {
       return NextResponse.json(
         { error: error.message },
