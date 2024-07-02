@@ -4,10 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 async function getInfo(id: string, retries: number = 3) {
   try {
     const movie = new MOVIES.FlixHQ();
-    const { results, hasNextPage, totalPages, totalResults } =
-      await movie.fetchMediaInfo(id);
+    const results = await movie.fetchMediaInfo(id);
     return NextResponse.json(
-      { data: results, hasNextPage, totalPages, totalResults },
+      { data: results },
       { status: 200 }
     );
   } catch (error: any) {
