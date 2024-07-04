@@ -25,7 +25,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id") || "";
     const results = await anilist.fetchMangaInfo(id);
-
+    req.headers.set('Access-Control-Allow-Origin', '*');
+    req.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    req.headers.set('Access-Control-Allow-Headers', 'Authorization, Content-Type');
     const response = NextResponse.json({ data: results }, { status: 200 });
     response.headers.set('Access-Control-Allow-Origin', '*');
     response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
