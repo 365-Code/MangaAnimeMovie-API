@@ -5,6 +5,8 @@ async function getInfo(id: string, retries: number = 3) {
   try {
     const movie = new MOVIES.FlixHQ();
     const results = await movie.fetchMediaInfo(id);
+    console.log(results);
+    
     return NextResponse.json(
       { data: results },
       { status: 200 }
